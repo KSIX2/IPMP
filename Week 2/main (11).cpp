@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void ceilOfKey(int arr[], int l, int r, int key){
+    
+    if(key >= arr[r]){                                              //key is larger than all elements
+        cout << "Ceil of given key doesn't exist in the array";
+        return;
+    }
+    
+    if(key < arr[l]){                                               //key is smaller than all elements
+        cout << "Ceil of given key is " << arr[l];
+        return;
+    }
+    
+    int m;
+    while(r-l > 1){
+        m = l + (r-l)/2;
+        if(key < arr[m])
+            r = m;
+        else 
+            l = m;
+    }
+    cout << "Ceil of given key is " << arr[r];
+    return;
+}
+
+int main(){
+    int arr[8] = {2,3,4,5,7,8,9,10};                                //sorted array
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int key = 10;
+    ceilOfKey(arr, 0, size-1, key);
+    return 0;
+}
